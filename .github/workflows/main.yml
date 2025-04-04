@@ -1,0 +1,36 @@
+
+python
+import json
+import os
+
+class AirportManager:
+    def __init__(self, filename="airports.json"):
+        self.filename = filename
+        self.airports = self.load_data()
+
+    def load_data(self):
+        """加载机场数据文件"""
+        if os.path.exists(self.filename):
+            with open(self.filename, 'r') as f:
+                return json.load(f)
+        return {}
+
+    def save_data(self):
+        """保存数据到文件"""
+        with open(self.filename, 'w') as f:
+            json.dump(self.airports, f, indent=2)
+
+    def add_airport(self):
+        """添加新机场"""
+        code = input("输入机场IATA代码（3个大写字母）: ").upper()
+        if code in self.airports:
+            print("该代码已存在！")
+            return
+
+         可自定义的字段
+        name = input("机场全名: ")
+        city = input("所在城市: ")
+        country = input("所在国家: ")
+        icao = input("ICAO代码（4个字母，可选）: ").upper()
+        lat = input("纬度（十进制）: ")
+        lon = input("经度
